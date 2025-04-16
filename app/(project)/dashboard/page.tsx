@@ -1,5 +1,6 @@
 import { handleAuth } from "@/app/actions/handle-auth";
 import { auth } from "@/app/lib/auth";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
@@ -8,7 +9,7 @@ export default async function Dashboard() {
         redirect("/login");
     }
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
+        <div className="flex flex-col gap-10 items-center justify-center h-screen">
         <h1 className="text-4xl font-bold">Protected Dashboard</h1>
         <p>{session?.user?.email ? session?.user?.email : "Usuário não está logado"}</p>
         {session?.user?.image && (
@@ -18,6 +19,7 @@ export default async function Dashboard() {
                 </button>
             </form>
         )}
+        <Link href="/pagamentos">Pagamentos</Link>
         </div>
     );
 }
